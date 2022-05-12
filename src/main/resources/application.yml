@@ -1,0 +1,93 @@
+line.bot:
+  channel-token: 'placeholder'
+  channel-secret: 'placeholder'
+  handler.path: /callback
+
+invoice:
+  prize:
+    xml: 'https://invoice.etax.nat.gov.tw/invoice.xml'
+
+cpc:
+  oil-price-history:
+    count: 5
+    effective-date-tag: '牌價生效時間'
+    product-name-tag: '產品名'
+    reference-price-tag: '參考牌價'
+    charge-unit-tag: '計價單位'
+    web-service: 'https://vipmember.tmtd.cpc.com.tw/opendata/ListPriceWebService.asmx/getCPCMainProdListPrice_Historical?prodid=%d'
+
+weather:
+  cwb:
+    api:
+      weather-icon:
+        day: 'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/png_icon/day/%s.png'
+        night: 'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/png_icon/night/%s.png'
+      auth-key: 'placeholder'
+      url-prefix: 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/'
+      two-day-count: 6
+      yilan-county:
+        two-day: 'F-D0047-001'
+        one-week: 'F-D0047-003'
+      taoyuan-city:
+        two-day: 'F-D0047-005'
+        one-week: 'F-D0047-007'
+      hsinchu-county:
+        two-day: 'F-D0047-009'
+        one-week: 'F-D0047-011'
+      miaoli-county:
+        two-day: 'F-D0047-013'
+        one-week: 'F-D0047-015'
+      changhua-county:
+        two-day: 'F-D0047-017'
+        one-week: 'F-D0047-019'
+      nantou-county:
+        two-day: 'F-D0047-021'
+        one-week: 'F-D0047-023'
+      yunlin-county:
+        two-day: 'F-D0047-025'
+        one-week: 'F-D0047-027'
+      chiayi-county:
+        two-day: 'F-D0047-029'
+        one-week: 'F-D0047-031'
+      pingtung-county:
+        two-day: 'F-D0047-033'
+        one-week: 'F-D0047-035'
+      taitung-county:
+        two-day: 'F-D0047-037'
+        one-week: 'F-D0047-039'
+      hualien-county:
+        two-day: 'F-D0047-041'
+        one-week: 'F-D0047-043'
+      penghu-county:
+        two-day: 'F-D0047-045'
+        one-week: 'F-D0047-047'
+      keelung-city:
+        two-day: 'F-D0047-049'
+        one-week: 'F-D0047-051'
+      hsinchu-city:
+        two-day: 'F-D0047-053'
+        one-week: 'F-D0047-055'
+      chiayi-city:
+        two-day: 'F-D0047-057'
+        one-week: 'F-D0047-059'
+      taipei:
+        two-day: 'F-D0047-061'
+        one-week: 'F-D0047-063'
+      kaohsiung-city:
+        two-day: 'F-D0047-065'
+        one-week: 'F-D0047-067'
+      new-taipei:
+        two-day: 'F-D0047-069'
+        one-week: 'F-D0047-071'
+      taichung:
+        two-day: 'F-D0047-073'
+        one-week: 'F-D0047-075'
+      tainan-city:
+        two-day: 'F-D0047-077'
+        one-week: 'F-D0047-079'
+      lianjiang-county:
+        two-day: 'F-D0047-081'
+        one-week: 'F-D0047-083'
+      kinmen-county:
+        two-day: 'F-D0047-085'
+        one-week: 'F-D0047-087'
