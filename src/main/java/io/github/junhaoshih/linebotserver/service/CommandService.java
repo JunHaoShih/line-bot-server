@@ -24,6 +24,7 @@ public class CommandService {
         builder.append("!指令: 顯示所有可用指令").append(System.lineSeparator());
         builder.append("!發票: 顯示當期發票兌獎資訊").append(System.lineSeparator());
         builder.append("!roll: 投擲骰子，請輸入「!指令 roll」取得更詳細之說明").append(System.lineSeparator());
+        builder.append("!作者: 顯示作者資訊").append(System.lineSeparator());
         builder.append("!油價: 取得中油油價歷史，請輸入「!指令 油價」取得更詳細之說明").append(System.lineSeparator());
 
         return new TextMessage(builder.toString());

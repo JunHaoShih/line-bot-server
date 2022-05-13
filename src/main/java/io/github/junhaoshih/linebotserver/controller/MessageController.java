@@ -7,6 +7,7 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import io.github.junhaoshih.linebotserver.service.CommandService;
+import io.github.junhaoshih.linebotserver.service.DeveloperInfoService;
 import io.github.junhaoshih.linebotserver.service.DiceService;
 import io.github.junhaoshih.linebotserver.service.InvoiceService;
 import io.github.junhaoshih.linebotserver.service.cpc.CPCOilPriceService;
@@ -32,6 +33,9 @@ public class MessageController {
 
     @Autowired
     private WeatherService weatherService;
+
+    @Autowired
+    private DeveloperInfoService developerInfoService;
 
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
@@ -60,6 +64,8 @@ public class MessageController {
                 return cpcOilPriceService.getLatestOilPriceHistoryMessage(args, event);
             case "天氣":
                 return weatherService.getWeatherMessage(args, event);
+            case "作者":
+                return developerInfoService.getDeveloperMessage();
         }
         return null;
     }
