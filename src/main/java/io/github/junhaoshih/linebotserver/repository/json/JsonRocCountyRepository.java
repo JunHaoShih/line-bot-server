@@ -46,4 +46,11 @@ public class JsonRocCountyRepository implements RocCountyRepository {
         else
             return false;
     }
+
+    @Override
+    public List<RocRegion> getRocRegions(County county) throws IOException, InterruptedException {
+        List<RocCounty> rocCounties = getRocCounties();
+        RocCounty targetCounty = rocCounties.stream().filter(rocCounty -> rocCounty.getCityName().equals(county.getCountyName())).findFirst().get();
+        return targetCounty.getAreaList();
+    }
 }

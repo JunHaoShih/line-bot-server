@@ -6,10 +6,7 @@ import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-import io.github.junhaoshih.linebotserver.service.CommandService;
-import io.github.junhaoshih.linebotserver.service.DeveloperInfoService;
-import io.github.junhaoshih.linebotserver.service.DiceService;
-import io.github.junhaoshih.linebotserver.service.InvoiceService;
+import io.github.junhaoshih.linebotserver.service.*;
 import io.github.junhaoshih.linebotserver.service.cpc.CPCOilPriceService;
 import io.github.junhaoshih.linebotserver.service.cwb.WeatherService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +33,9 @@ public class MessageController {
 
     @Autowired
     private DeveloperInfoService developerInfoService;
+
+    @Autowired
+    private TaiwanRegionService taiwanRegionService;
 
     @EventMapping
     public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
@@ -66,6 +66,8 @@ public class MessageController {
                 return weatherService.getWeatherMessage(args, event);
             case "作者":
                 return developerInfoService.getDeveloperMessage();
+            case "縣市":
+                return taiwanRegionService.getTaiwanRegionMessage(args, event);
         }
         return null;
     }

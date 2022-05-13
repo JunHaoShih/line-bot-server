@@ -1,6 +1,7 @@
 package io.github.junhaoshih.linebotserver.repository;
 
 import io.github.junhaoshih.linebotserver.data.roc.RocCounty;
+import io.github.junhaoshih.linebotserver.data.roc.RocRegion;
 import io.github.junhaoshih.linebotserver.enums.cwb.County;
 
 import java.io.IOException;
@@ -24,4 +25,13 @@ public interface RocCountyRepository {
      * @throws InterruptedException
      */
     boolean isRegionExist(County county, String regionStr) throws IOException, InterruptedException;
+
+    /**
+     * 取得指定縣市的所有地區
+     * @param county 指定縣市
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    List<RocRegion> getRocRegions(County county) throws IOException, InterruptedException;
 }
