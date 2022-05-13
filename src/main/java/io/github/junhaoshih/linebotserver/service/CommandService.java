@@ -26,6 +26,8 @@ public class CommandService {
         builder.append("!roll: 投擲骰子，請輸入「!指令 roll」取得更詳細之說明").append(System.lineSeparator());
         builder.append("!作者: 顯示作者資訊").append(System.lineSeparator());
         builder.append("!油價: 取得中油油價歷史，請輸入「!指令 油價」取得更詳細之說明").append(System.lineSeparator());
+        builder.append("!縣市: 顯示台灣所有縣市").append(System.lineSeparator());
+        builder.append("!縣市 縣市名: 顯示該縣市所有鄉鎮市區").append(System.lineSeparator());
 
         return new TextMessage(builder.toString());
     }

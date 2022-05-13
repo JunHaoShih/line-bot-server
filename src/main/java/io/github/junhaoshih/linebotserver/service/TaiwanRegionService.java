@@ -1,7 +1,6 @@
 package io.github.junhaoshih.linebotserver.service;
 
 import com.linecorp.bot.model.action.PostbackAction;
-import com.linecorp.bot.model.action.URIAction;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.FlexMessage;
@@ -10,7 +9,6 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.message.flex.component.*;
 import com.linecorp.bot.model.message.flex.container.Bubble;
 import com.linecorp.bot.model.message.flex.unit.FlexLayout;
-import io.github.junhaoshih.linebotserver.data.InvoicePrizeResult;
 import io.github.junhaoshih.linebotserver.data.roc.RocCounty;
 import io.github.junhaoshih.linebotserver.data.roc.RocRegion;
 import io.github.junhaoshih.linebotserver.enums.cwb.County;
@@ -28,6 +26,12 @@ public class TaiwanRegionService {
     @Autowired
     private RocCountyRepository rocCountyRepository;
 
+    /**
+     * 取得台灣區域訊息
+     * @param args
+     * @param event
+     * @return
+     */
     public Message getTaiwanRegionMessage(String[] args, MessageEvent<TextMessageContent> event) {
         try {
             if (args.length == 1) {

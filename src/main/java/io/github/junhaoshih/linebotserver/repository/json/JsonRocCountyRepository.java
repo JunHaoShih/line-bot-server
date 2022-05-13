@@ -25,7 +25,7 @@ public class JsonRocCountyRepository implements RocCountyRepository {
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json"))
+                .uri(URI.create("https://raw.githubusercontent.com/JunHaoShih/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json"))
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
