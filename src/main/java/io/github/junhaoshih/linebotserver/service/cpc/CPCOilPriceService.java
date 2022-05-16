@@ -105,15 +105,15 @@ public class CPCOilPriceService {
                                 .size("xs")
                                 .color("#aaaaaa")
                                 .build());
-                        // 投擲者面板
-                        add(Box.builder()
+                        // 呼叫者面板
+                        /*add(Box.builder()
                                 .layout(FlexLayout.HORIZONTAL)
                                 .contents(getCallerComponents(userName))
-                                .build());
+                                .build());*/
                         add(Separator.builder()
                                 .margin("xxl")
                                 .build());
-                        // 投擲點數
+                        // 油價歷史
                         add(Box.builder()
                                 .layout(FlexLayout.VERTICAL)
                                 .contents(getPriceHistoryComponents(histories))

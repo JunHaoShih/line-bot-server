@@ -138,10 +138,10 @@ public class DiceService {
                                 .weight(Text.TextWeight.BOLD)
                                 .build());
                         // 投擲者面板
-                        add(Box.builder()
+                        /*add(Box.builder()
                                 .layout(FlexLayout.HORIZONTAL)
                                 .contents(getRollerComponents(diceResult.getRollerName()))
-                                .build());
+                                .build());*/
                         add(Separator.builder()
                                 .margin("xxl")
                                 .build());
