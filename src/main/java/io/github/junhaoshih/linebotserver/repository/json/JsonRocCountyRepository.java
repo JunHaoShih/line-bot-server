@@ -6,8 +6,10 @@ import io.github.junhaoshih.linebotserver.data.roc.RocCounty;
 import io.github.junhaoshih.linebotserver.data.roc.RocRegion;
 import io.github.junhaoshih.linebotserver.enums.cwb.County;
 import io.github.junhaoshih.linebotserver.repository.RocCountyRepository;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,7 +22,11 @@ import java.util.List;
 public class JsonRocCountyRepository implements RocCountyRepository {
     @Override
     public List<RocCounty> getRocCounties() throws IOException, InterruptedException {
-        HttpClient httpClient = HttpClient.newBuilder()
+        File jsonFile = new ClassPathResource("CityCountyData.json").getFile();
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.readValue(jsonFile, new TypeReference<List<RocCounty>>() {});
+        /*HttpClient httpClient = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofMillis(3000))
                 .build();
 
@@ -33,7 +39,7 @@ public class JsonRocCountyRepository implements RocCountyRepository {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
 
-        return mapper.readValue(response.body(), new TypeReference<List<RocCounty>>() {});
+        return mapper.readValue(response.body(), new TypeReference<List<RocCounty>>() {});*/
     }
 
     @Override
