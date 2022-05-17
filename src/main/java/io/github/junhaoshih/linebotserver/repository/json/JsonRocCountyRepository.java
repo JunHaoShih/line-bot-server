@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -22,7 +23,7 @@ import java.util.List;
 public class JsonRocCountyRepository implements RocCountyRepository {
     @Override
     public List<RocCounty> getRocCounties() throws IOException, InterruptedException {
-        File jsonFile = new ClassPathResource("CityCountyData.json").getFile();
+        InputStream jsonFile = new ClassPathResource("CityCountyData.json").getInputStream();
         ObjectMapper mapper = new ObjectMapper();
 
         return mapper.readValue(jsonFile, new TypeReference<List<RocCounty>>() {});
