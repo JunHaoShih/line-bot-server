@@ -97,12 +97,13 @@ public class WeatherService {
 
     private WeatherApiResult getWeatherApiResult(String url) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newBuilder()
-                .connectTimeout(Duration.ofMillis(3000))
+                .connectTimeout(Duration.ofMillis(10000))
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "application/json")
+                .timeout(Duration.ofMillis(10000))
                 .GET()
                 .build();
 
