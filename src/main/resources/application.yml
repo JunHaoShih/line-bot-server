@@ -14,7 +14,7 @@ cpc:
     product-name-tag: '產品名'
     reference-price-tag: '參考牌價'
     charge-unit-tag: '計價單位'
-    web-service: 'https://vipmember.tmtd.cpc.com.tw/opendata/ListPriceWebService.asmx/getCPCMainProdListPrice_Historical?prodid=%d'
+    web-service: 'https://vipmbr.cpc.com.tw/CPCSTN/ListPriceWebService.asmx/getCPCMainProdListPrice_XML?prodid=%d'
 
 weather:
   cwb:
