@@ -1,25 +1,26 @@
 package io.github.junhaoshih.linebotserver.repository.web;
 
 import io.github.junhaoshih.linebotserver.data.cpc.CPCOilPriceHistory;
+import io.github.junhaoshih.linebotserver.data.cpc.CpcOilPrice;
+import io.github.junhaoshih.linebotserver.data.cpc.CpcOilPriceGroup;
 import io.github.junhaoshih.linebotserver.enums.CPCOilType;
 import io.github.junhaoshih.linebotserver.repository.CPCOilRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.ZonedDateTime;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 從中國石油webservice取得油價資訊
@@ -47,7 +48,16 @@ public class WebCPCOilRepository implements CPCOilRepository {
     @Override
     public List<CPCOilPriceHistory> getLatestOilHistories(CPCOilType oilType) {
         List<CPCOilPriceHistory> histories = new ArrayList<>();
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        List<CpcOilPriceGroup> priceGroups = getOilPriceHistories();
+        for (CpcOilPriceGroup priceGroup: priceGroups) {
+        	for (CpcOilPrice price: priceGroup.getData()) {
+        		if (price.getName().equals(oilType.getName())) {
+        			histories.add(new CPCOilPriceHistory(priceGroup.getName(), oilType.getName(), price.getY(), ""));
+        			break;
+        		}
+        	}
+        }
+        /*DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             //Parse the content to Document object
@@ -62,29 +72,42 @@ public class WebCPCOilRepository implements CPCOilRepository {
 
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
-        }
+        }*/
         return histories;
     }
+    
+	private List<CpcOilPriceGroup> getOilPriceHistories() {
+		List<CpcOilPriceGroup> priceGroups = new ArrayList<CpcOilPriceGroup>();
+		
+		HttpClient httpClient = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofMillis(10000))
+                .build();
+		
+		HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://www.cpc.com.tw/historyprice.aspx?n=2890"))
+                .header("Content-Type", "application/json")
+                .timeout(Duration.ofMillis(10000))
+                .GET()
+                .build();
+		
+		try {
+			HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+			Pattern p = Pattern.compile("var pieSeries = (.*);");
+			Matcher matcher = p.matcher(response.body());
+			if (matcher.find() && matcher.groupCount() > 0) {
+				String data = matcher.group(1);
+				ObjectMapper mapper = new ObjectMapper();
 
-    /**
-     * 將element轉換成CPCOilPriceHistory
-     * @param currentElement 要轉換的element
-     * @param oilType 油類
-     * @return 油價歷史
-     */
-    private CPCOilPriceHistory parseElement2PriceHistory(Element currentElement, CPCOilType oilType) {
-        // 生效日期
-        Element effectiveDateElement = (Element) currentElement.getElementsByTagName(effectiveDateTag).item(0);
-        String effectiveDateStr = effectiveDateElement.getTextContent();
-        ZonedDateTime effectiveDate = ZonedDateTime.parse(effectiveDateStr);
-        // 參考牌價
-        Element referencePriceElement = (Element) currentElement.getElementsByTagName(referencePriceTag).item(0);
-        String referencePriceStr = referencePriceElement.getTextContent();
-        BigDecimal referencePrice = new BigDecimal(referencePriceStr);
-        // 計價單位
-        Element chargeUnitElement = (Element) currentElement.getElementsByTagName(chargeUnitTag).item(0);
-        String chargeUnitStr = chargeUnitElement.getTextContent();
-
-        return new CPCOilPriceHistory(effectiveDate, oilType.getName(), referencePrice, chargeUnitStr);
-    }
+		        priceGroups = Arrays.asList(mapper.readValue(data, CpcOilPriceGroup[].class));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return priceGroups;
+	}
 }

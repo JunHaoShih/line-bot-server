@@ -18,7 +18,7 @@ public class CPCOilPriceHistory {
     /**
      * 生效日期
      */
-    private ZonedDateTime effectiveDate;
+    private String effectiveDate;
 
     /**
      * 產品名(油的種類)

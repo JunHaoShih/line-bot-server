@@ -95,7 +95,7 @@ public class CPCOilPriceService {
                                 .weight(Text.TextWeight.BOLD)
                                 .build());
                         add(Text.builder()
-                                .text("近五周油價歷史")
+                                .text("中油油價歷史")
                                 .size("xxl")
                                 .margin("md")
                                 .weight(Text.TextWeight.BOLD)
@@ -147,11 +147,11 @@ public class CPCOilPriceService {
      * @return 油價歷史欄位
      */
     private List<FlexComponent> getPriceHistory(CPCOilPriceHistory history) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
-        String effectiveDateStr = history.getEffectiveDate().format(formatter);
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
+        //String effectiveDateStr = history.getEffectiveDate().format(formatter);
         List<FlexComponent> flexComponents = new ArrayList<>();
         flexComponents.add(Text.builder()
-                .text(effectiveDateStr)
+                .text(history.getEffectiveDate())
                 .flex(0)
                 .size("sm")
                 .color("#555555")

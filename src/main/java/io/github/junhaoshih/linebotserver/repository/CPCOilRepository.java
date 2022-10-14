@@ -16,4 +16,6 @@ public interface CPCOilRepository {
      * @return 中油最近五周的油價歷史
      */
     List<CPCOilPriceHistory> getLatestOilHistories(CPCOilType oilType);
+    
+    //List<CpcOilPriceGroup> getOilPriceHistories(CPCOilType oilType);
 }
