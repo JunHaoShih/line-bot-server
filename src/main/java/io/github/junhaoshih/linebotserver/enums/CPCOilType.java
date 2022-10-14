@@ -11,15 +11,15 @@ public enum CPCOilType {
     /**
      * 92無鉛汽油
      */
-    UnleadedGasoline92(1, "92無鉛汽油"),
+    UnleadedGasoline92(1, "92 無鉛汽油"),
     /**
      * 95無鉛汽油
      */
-    UnleadedGasoline95(2, "95無鉛汽油"),
+    UnleadedGasoline95(2, "95 無鉛汽油"),
     /**
      * 98無鉛汽油
      */
-    UnleadedGasoline98(3, "98無鉛汽油");
+    UnleadedGasoline98(3, "98 無鉛汽油");
 
     private int value;
     private String name;
