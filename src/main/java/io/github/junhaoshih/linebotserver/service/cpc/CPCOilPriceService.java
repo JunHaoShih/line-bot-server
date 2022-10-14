@@ -95,7 +95,7 @@ public class CPCOilPriceService {
                                 .weight(Text.TextWeight.BOLD)
                                 .build());
                         add(Text.builder()
-                                .text("近五周油價歷史")
+                                .text("中油油價歷史")
                                 .size("xxl")
                                 .margin("md")
                                 .weight(Text.TextWeight.BOLD)
