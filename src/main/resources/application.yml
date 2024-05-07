@@ -20,10 +20,10 @@ weather:
   cwb:
     api:
       weather-icon:
-        day: 'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/png_icon/day/%s.png'
-        night: 'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/png_icon/night/%s.png'
+        day: 'https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/png_icon/day/%s.png'
+        night: 'https://www.cwa.gov.tw/V8/assets/img/weather_icons/weathers/png_icon/night/%s.png'
       auth-key: 'placeholder'
-      url-prefix: 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/'
+      url-prefix: 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/'
       two-day-count: 6
       yilan-county:
         two-day: 'F-D0047-001'
